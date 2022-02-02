@@ -26,6 +26,8 @@
 		DDD3B7C827AB015C0055ED99 /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7C727AB015C0055ED99 /* UITableViewCell+Identifier.swift */; };
 		DDD3B7CA27AB03220055ED99 /* SchoolSATScoreViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7C927AB03220055ED99 /* SchoolSATScoreViewModal.swift */; };
 		DDD3B7CC27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CB27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift */; };
+		DDD3B7CE27AB3BF90055ED99 /* UIStackView+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CD27AB3BF90055ED99 /* UIStackView+init.swift */; };
+		DDD3B7D027AB412E0055ED99 /* UIScrollView+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CF27AB412E0055ED99 /* UIScrollView+init.swift */; };
 		DDE50D8627AA0EB800BCB59F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8527AA0EB800BCB59F /* AppDelegate.swift */; };
 		DDE50D8827AA0EB800BCB59F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8727AA0EB800BCB59F /* SceneDelegate.swift */; };
 		DDE50D8A27AA0EB800BCB59F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8927AA0EB800BCB59F /* ViewController.swift */; };
@@ -74,6 +76,8 @@
 		DDD3B7C727AB015C0055ED99 /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
 		DDD3B7C927AB03220055ED99 /* SchoolSATScoreViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSATScoreViewModal.swift; sourceTree = "<group>"; };
 		DDD3B7CB27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActivityIndicator.swift"; sourceTree = "<group>"; };
+		DDD3B7CD27AB3BF90055ED99 /* UIStackView+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+init.swift"; sourceTree = "<group>"; };
+		DDD3B7CF27AB412E0055ED99 /* UIScrollView+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+init.swift"; sourceTree = "<group>"; };
 		DDE50D8227AA0EB800BCB59F /* 20220201-SrikanthAdavalli-NYCSchools).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "20220201-SrikanthAdavalli-NYCSchools).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE50D8527AA0EB800BCB59F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDE50D8727AA0EB800BCB59F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				DDD3B7BB27AA3DA60055ED99 /* UIView+Constraints.swift */,
 				DDD3B7C727AB015C0055ED99 /* UITableViewCell+Identifier.swift */,
 				DDD3B7CB27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift */,
+				DDD3B7CD27AB3BF90055ED99 /* UIStackView+init.swift */,
+				DDD3B7CF27AB412E0055ED99 /* UIScrollView+init.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -436,11 +442,13 @@
 				DDD3B7C427AAFE0E0055ED99 /* SATInformation.swift in Sources */,
 				DDE50D8627AA0EB800BCB59F /* AppDelegate.swift in Sources */,
 				DDD3B79F27AA1C830055ED99 /* URLRequest.swift in Sources */,
+				DDD3B7D027AB412E0055ED99 /* UIScrollView+init.swift in Sources */,
 				DDD3B79927AA1C220055ED99 /* EndPoint.swift in Sources */,
 				DDD3B7BC27AA3DA60055ED99 /* UIView+Constraints.swift in Sources */,
 				DDE50D8827AA0EB800BCB59F /* SceneDelegate.swift in Sources */,
 				DDD3B7A527AA1D050055ED99 /* Session.swift in Sources */,
 				DDD3B7CA27AB03220055ED99 /* SchoolSATScoreViewModal.swift in Sources */,
+				DDD3B7CE27AB3BF90055ED99 /* UIStackView+init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

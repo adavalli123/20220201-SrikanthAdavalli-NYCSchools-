@@ -10,10 +10,11 @@ import Combine
 
 class SchoolListViewModal: NSObject {
     var repository: SchoolListRepository?
-    @Published var schools: [School] = []
     
     var title: String { "Schools".uppercased() }
     var cellCount: Int { schools.count }
+    
+    @Published var schools: [School] = []
     
     convenience init(repository: SchoolListRepository? = SchoolListRepository()) {
         self.init()

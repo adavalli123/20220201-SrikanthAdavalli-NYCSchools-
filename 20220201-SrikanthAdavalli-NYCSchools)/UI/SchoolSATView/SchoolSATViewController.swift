@@ -9,8 +9,11 @@ import UIKit
 import Combine
 
 class SchoolSATViewController: UIViewController {
-    var viewModel: SchoolSATScoreViewModal!
+    private (set) var viewModel: SchoolSATScoreViewModal!
     private var cancellables: Set<AnyCancellable> = []
+    
+    private let scrollView = UIScrollView(showsVerticalScrollIndicator: false)
+    private let mainStackView = UIStackView(axis: .vertical)
     
     init(school: School) {
         super.init(nibName: nil, bundle: nil)
@@ -21,22 +24,6 @@ class SchoolSATViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    let mainStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -45,18 +32,18 @@ class SchoolSATViewController: UIViewController {
         fetchSatScores()
     }
     
-    func fetchSatScores() {
+    private func fetchSatScores() {
         viewModel.fetchSatScores()
         viewModel.$satScore
             .receive(on: DispatchQueue.main)
             .dropFirst()
             .sink(receiveValue: { [weak self] _ in
-                self?.handleParse()
-        }).store(in: &cancellables)
+                self?.buildUI()
+            }).store(in: &cancellables)
     }
     
-    func handleParse() {
-        for elements in self.viewModel.parse() {
+    private func buildUI() {
+        for elements in self.viewModel.uiContent() {
             for info in elements.0 {
                 if elements.isVertical == true {
                     self.buildVerticalSchoolInformationStackView(from: info)
@@ -69,13 +56,8 @@ class SchoolSATViewController: UIViewController {
         }
     }
     
-    func buildHorizontalSATScoreStackView(from info: SATInformation) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fill
-        stack.alignment = .fill
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = 15
+    private func buildHorizontalSATScoreStackView(from info: SATInformation) -> UIStackView {
+        let stack = UIStackView(spacing: 20, axis: .horizontal)
         
         if let title = info.key {
             let titleLabel = UILabel(.secondary, alignment: .left)
@@ -89,11 +71,11 @@ class SchoolSATViewController: UIViewController {
             scoreLabel.text = value
             stack.addArrangedSubview(scoreLabel)
         }
-
+        
         return stack
     }
     
-    func buildVerticalSchoolInformationStackView(from info: SATInformation) {
+    private func buildVerticalSchoolInformationStackView(from info: SATInformation) {
         if let title = info.key {
             let titleLabel = UILabel(.primary)
             titleLabel.text = title.uppercased()
@@ -109,7 +91,7 @@ class SchoolSATViewController: UIViewController {
         }
     }
     
-    func setupScrollView(){
+    private func setupScrollView(){
         view.add(view: scrollView, spacing: .default)
         scrollView.add(view: mainStackView)
         

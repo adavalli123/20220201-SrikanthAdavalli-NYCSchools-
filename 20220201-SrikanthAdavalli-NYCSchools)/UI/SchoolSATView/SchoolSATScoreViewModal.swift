@@ -11,9 +11,8 @@ import Combine
 class SchoolSATScoreViewModal: NSObject {
     var repository: SchoolSatScoreRepository?
     var school: School?
-    @Published var satScore: SchoolSATScore?
     
-    var title: String { "School SAT score" }
+    @Published var satScore: SchoolSATScore?
     
     convenience init(school: School, repository: SchoolSatScoreRepository = SchoolSatScoreRepository()) {
         self.init()
@@ -38,7 +37,7 @@ class SchoolSATScoreViewModal: NSObject {
     //      static let location = "location"
     // }
     // but i am not re-using it so i had sending keys
-    func parse() -> [([SATInformation], isVertical: Bool)] {
+    func uiContent() -> [([SATInformation], isVertical: Bool)] {
         return [
             ([
                 SATInformation(key: school?.name, value: nil),
