@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    let viewModel = SchoolListViewModal(repository: SchoolListRepository())
+    lazy var viewModel: SchoolListViewModal = {
+       let vm = SchoolListViewModal(repository: SchoolListRepository())
+        return vm
+    }()
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +30,17 @@ class ViewController: UIViewController {
     }
     
     private func fetchListOfSchools() {
-        viewModel.fetch { [weak self] in self?.reloadData() }
+        viewModel.fetch()
+        loadingStart()
+        viewModel.$schools.dropFirst().receive(on: DispatchQueue.main) .sink { [weak self] _ in
+            self?.tableView.reloadData()
+            self?.loadingStop()
+        }.store(in: &cancellables)
     }
     
     private func configureView() {
         configureTableView()
         title = viewModel.title
-    }
-    
-    private func reloadData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
     }
 }
 
@@ -45,9 +50,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = viewModel.schools[indexPath.row].name
+        content.text = viewModel.schools[indexPath.row].name.uppercased()
+        content.textProperties.font = .boldSystemFont(ofSize: 17)
         content.secondaryText = viewModel.schools[indexPath.row].overview
         content.secondaryTextProperties.numberOfLines = 5
         cell.contentConfiguration = content

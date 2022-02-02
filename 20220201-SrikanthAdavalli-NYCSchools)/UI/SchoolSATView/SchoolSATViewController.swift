@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class SchoolSATViewController: UIViewController {
     var viewModel: SchoolSATScoreViewModal!
+    private var cancellables: Set<AnyCancellable> = []
     
     init(school: School) {
         super.init(nibName: nil, bundle: nil)
@@ -40,13 +42,17 @@ class SchoolSATViewController: UIViewController {
         view.backgroundColor = .white
         
         setupScrollView()
-        
-        viewModel.fetchSatScores { [weak self] in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.handleParse()
-            }
-        }
+        fetchSatScores()
+    }
+    
+    func fetchSatScores() {
+        viewModel.fetchSatScores()
+        viewModel.$satScore
+            .receive(on: DispatchQueue.main)
+            .dropFirst()
+            .sink(receiveValue: { [weak self] _ in
+                self?.handleParse()
+        }).store(in: &cancellables)
     }
     
     func handleParse() {

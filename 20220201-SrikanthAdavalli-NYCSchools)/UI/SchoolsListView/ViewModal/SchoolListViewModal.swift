@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 class SchoolListViewModal: NSObject {
     var repository: SchoolListRepository?
-    var schools: [School] = []
+    @Published var schools: [School] = []
     
-    var title: String { "Schools" }
+    var title: String { "Schools".uppercased() }
     var cellCount: Int { schools.count }
     
     convenience init(repository: SchoolListRepository? = SchoolListRepository()) {
@@ -19,14 +20,12 @@ class SchoolListViewModal: NSObject {
         self.repository = repository
     }
     
-    func fetch(_ closure: @escaping () -> ()) {
+    func fetch() {
         repository?.fetch(.schools) { [weak self] result in
             switch result {
             case .success(let schools):
                 self?.schools = schools
-                closure()
             case .failure(_): break
-                // handle error
             }
         }
     }

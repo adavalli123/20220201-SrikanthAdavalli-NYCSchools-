@@ -16,7 +16,6 @@ protocol Request {
     )
 }
 
-@available(macOS 11.0, *)
 extension URLRequest: Request {
     init(
         endpoint: EndPoint,

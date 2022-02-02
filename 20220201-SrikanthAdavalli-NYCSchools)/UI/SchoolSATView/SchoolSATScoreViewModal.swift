@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 class SchoolSATScoreViewModal: NSObject {
     var repository: SchoolSatScoreRepository?
     var school: School?
-    var satScore: SchoolSATScore?
+    @Published var satScore: SchoolSATScore?
     
     var title: String { "School SAT score" }
     
@@ -21,19 +22,22 @@ class SchoolSATScoreViewModal: NSObject {
         self.repository = repository
     }
     
-    func fetchSatScores(_ closure: @escaping () -> ()) {
+    func fetchSatScores() {
         guard let dbn = school?.dbn else { return }
         repository?.fetch(.sat(dbn: dbn)) { [weak self] result in
             switch result {
             case .success(let satScore):
                 self?.satScore = satScore.first
-                closure()
             case .failure(_): break
-                // handle error
             }
         }
     }
     
+    // we can move constants or strings to extension
+    // private extension String {
+    //      static let location = "location"
+    // }
+    // but i am not re-using it so i had sending keys
     func parse() -> [([SATInformation], isVertical: Bool)] {
         return [
             ([
