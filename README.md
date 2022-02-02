@@ -22,4 +22,4 @@ Created an iOS application on Marvel Characters.
 
 | List      | Detail |
 | ----------- | ----------- |
-| 
+| ![list](https://github.com/adavalli123/20220201-SrikanthAdavalli-NYCSchools-/blob/main/Resources/list.png) | ![detail](https://github.com/adavalli123/20220201-SrikanthAdavalli-NYCSchools-/blob/main/Resources/detail.png) |
