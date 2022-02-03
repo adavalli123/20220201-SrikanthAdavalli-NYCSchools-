@@ -12,9 +12,9 @@ Created an iOS application on Marvel Characters.
 - Initially it will show the school information, if user select any school for more details like sat score, location etc after tapping on the cell that information will be provided
 
 # Todo's
-- [ ] Search
+- [x] Search
 - [ ] textview link to browser 
-- [ ] unit tests
+- [x] unit tests - one file i had added unit tests
 - [x] used combine/ react native
 - [x] clean logs/system logs
 
