@@ -8,11 +8,31 @@
 import Foundation
 import Combine
 
-class SchoolListViewModal: NSObject {
+protocol SchoolListViewModalInput {
+    var repository: SchoolListRepository? { get }
+    var title: String { get }
+    var cellCount: Int { get }
+    var schools: [School] { get }
+    var isFiltering: Bool { get }
+    var filteredSchools: [School] { get }
+    var totalSchools: [School] { get }
+    
+    func fetch()
+}
+
+class SchoolListViewModal: NSObject, SchoolListViewModalInput {
     var repository: SchoolListRepository?
     
     var title: String { "Schools".uppercased() }
     var cellCount: Int { schools.count }
+    var isFiltering = false
+    
+    var filteredSchools: [School] = [] {
+        didSet { updateSchools() }
+    }
+    var totalSchools: [School] = [] {
+        didSet { updateSchools() }
+    }
     
     @Published var schools: [School] = []
     
@@ -25,9 +45,13 @@ class SchoolListViewModal: NSObject {
         repository?.fetch(.schools) { [weak self] result in
             switch result {
             case .success(let schools):
-                self?.schools = schools
+                self?.totalSchools = schools
             case .failure(_): break
             }
         }
+    }
+    
+    private func updateSchools() {
+        schools = isFiltering && !filteredSchools.isEmpty ? filteredSchools : totalSchools
     }
 }

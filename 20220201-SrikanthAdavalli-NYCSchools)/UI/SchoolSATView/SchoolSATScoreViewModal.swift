@@ -8,7 +8,16 @@
 import Foundation
 import Combine
 
-class SchoolSATScoreViewModal: NSObject {
+protocol SchoolSATScoreViewModalInput {
+    var repository: SchoolSatScoreRepository? { get }
+    var school: School? { get }
+    var satScore: SchoolSATScore? { get }
+    
+    func uiContent() -> [([SATInformation], isVertical: Bool)]
+    func fetchSatScores()
+}
+
+class SchoolSATScoreViewModal: NSObject, SchoolSATScoreViewModalInput {
     var repository: SchoolSatScoreRepository?
     var school: School?
     

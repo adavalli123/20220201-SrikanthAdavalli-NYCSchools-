@@ -16,11 +16,30 @@ class ViewController: UIViewController {
     }()
     
     private var cancellables: Set<AnyCancellable> = []
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    private var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         fetchListOfSchools()
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Schools"
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.tintColor = UIColor.gray
+        definesPresentationContext = true
     }
     
     private func configureTableView() {
@@ -40,16 +59,20 @@ class ViewController: UIViewController {
     
     private func configureView() {
         configureTableView()
+        setupSearchController()
         title = viewModel.title
     }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.isFiltering = isFiltering // passing the latest information
         return viewModel.cellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        viewModel.isFiltering = isFiltering // passing the latest information
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = viewModel.schools[indexPath.row].name.uppercased()
@@ -64,4 +87,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let satVC = SchoolSATViewController(school: viewModel.schools[indexPath.row])
         navigationController?.pushViewController(satVC, animated: true)
     }
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+      
+      func filterContentForSearchText(_ searchText: String,
+                                      category: School? = nil) {
+          viewModel.filteredSchools = viewModel.schools.filter { (result: School) -> Bool in
+          return result.name.lowercased().contains(searchText.lowercased())
+        }
+      }
 }

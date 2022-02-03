@@ -28,6 +28,10 @@
 		DDD3B7CC27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CB27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift */; };
 		DDD3B7CE27AB3BF90055ED99 /* UIStackView+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CD27AB3BF90055ED99 /* UIStackView+init.swift */; };
 		DDD3B7D027AB412E0055ED99 /* UIScrollView+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7CF27AB412E0055ED99 /* UIScrollView+init.swift */; };
+		DDD3B7D427AB45FF0055ED99 /* detail.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD3B7D227AB45FF0055ED99 /* detail.png */; };
+		DDD3B7D527AB45FF0055ED99 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD3B7D327AB45FF0055ED99 /* list.png */; };
+		DDD3B7D927AB4A070055ED99 /* MockSchoolListViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7D827AB4A070055ED99 /* MockSchoolListViewModal.swift */; };
+		DDD3B7DB27AB4B7B0055ED99 /* SchoolListViewModalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B7DA27AB4B7B0055ED99 /* SchoolListViewModalTest.swift */; };
 		DDE50D8627AA0EB800BCB59F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8527AA0EB800BCB59F /* AppDelegate.swift */; };
 		DDE50D8827AA0EB800BCB59F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8727AA0EB800BCB59F /* SceneDelegate.swift */; };
 		DDE50D8A27AA0EB800BCB59F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE50D8927AA0EB800BCB59F /* ViewController.swift */; };
@@ -78,6 +82,10 @@
 		DDD3B7CB27AB2E5B0055ED99 /* UIViewController+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		DDD3B7CD27AB3BF90055ED99 /* UIStackView+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+init.swift"; sourceTree = "<group>"; };
 		DDD3B7CF27AB412E0055ED99 /* UIScrollView+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+init.swift"; sourceTree = "<group>"; };
+		DDD3B7D227AB45FF0055ED99 /* detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail.png; sourceTree = "<group>"; };
+		DDD3B7D327AB45FF0055ED99 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		DDD3B7D827AB4A070055ED99 /* MockSchoolListViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSchoolListViewModal.swift; sourceTree = "<group>"; };
+		DDD3B7DA27AB4B7B0055ED99 /* SchoolListViewModalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListViewModalTest.swift; sourceTree = "<group>"; };
 		DDE50D8227AA0EB800BCB59F /* 20220201-SrikanthAdavalli-NYCSchools).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "20220201-SrikanthAdavalli-NYCSchools).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE50D8527AA0EB800BCB59F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDE50D8727AA0EB800BCB59F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,9 +248,36 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DDD3B7D127AB45D40055ED99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DDD3B7D227AB45FF0055ED99 /* detail.png */,
+				DDD3B7D327AB45FF0055ED99 /* list.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DDD3B7D627AB49D60055ED99 /* ViewModal */ = {
+			isa = PBXGroup;
+			children = (
+				DDD3B7D727AB49E30055ED99 /* TestProtocols */,
+				DDD3B7DA27AB4B7B0055ED99 /* SchoolListViewModalTest.swift */,
+			);
+			path = ViewModal;
+			sourceTree = "<group>";
+		};
+		DDD3B7D727AB49E30055ED99 /* TestProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DDD3B7D827AB4A070055ED99 /* MockSchoolListViewModal.swift */,
+			);
+			path = TestProtocols;
+			sourceTree = "<group>";
+		};
 		DDE50D7927AA0EB800BCB59F = {
 			isa = PBXGroup;
 			children = (
+				DDD3B7D127AB45D40055ED99 /* Resources */,
 				DDE50D8427AA0EB800BCB59F /* 20220201-SrikanthAdavalli-NYCSchools) */,
 				DDE50D9B27AA0EBB00BCB59F /* 20220201-SrikanthAdavalli-NYCSchools)Tests */,
 				DDE50DA527AA0EBB00BCB59F /* 20220201-SrikanthAdavalli-NYCSchools)UITests */,
@@ -280,6 +315,7 @@
 		DDE50D9B27AA0EBB00BCB59F /* 20220201-SrikanthAdavalli-NYCSchools)Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DDD3B7D627AB49D60055ED99 /* ViewModal */,
 				DDE50D9C27AA0EBB00BCB59F /* _0220201_SrikanthAdavalli_NYCSchools_Tests.swift */,
 			);
 			path = "20220201-SrikanthAdavalli-NYCSchools)Tests";
@@ -398,6 +434,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD3B7D427AB45FF0055ED99 /* detail.png in Resources */,
+				DDD3B7D527AB45FF0055ED99 /* list.png in Resources */,
 				DDE50D9227AA0EBB00BCB59F /* LaunchScreen.storyboard in Resources */,
 				DDE50D8F27AA0EBB00BCB59F /* Assets.xcassets in Resources */,
 				DDE50D8D27AA0EB800BCB59F /* Main.storyboard in Resources */,
@@ -456,6 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD3B7D927AB4A070055ED99 /* MockSchoolListViewModal.swift in Sources */,
+				DDD3B7DB27AB4B7B0055ED99 /* SchoolListViewModalTest.swift in Sources */,
 				DDE50D9D27AA0EBB00BCB59F /* _0220201_SrikanthAdavalli_NYCSchools_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

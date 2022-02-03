@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct School: Decodable {
-    let name: String
-    let dbn: String
-    let overview: String
-    let location: String
-    let phoneNumber: String
-    let website: String
+public struct School: Decodable, Equatable {
+    public let name: String
+    public let dbn: String
+    public let overview: String
+    public let location: String
+    public let phoneNumber: String
+    public let website: String
     
     enum CodingKeys: String, CodingKey {
         case name = "schoolName"
