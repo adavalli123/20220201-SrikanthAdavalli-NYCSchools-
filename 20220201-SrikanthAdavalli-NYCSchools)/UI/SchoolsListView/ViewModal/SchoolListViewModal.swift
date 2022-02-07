@@ -52,6 +52,6 @@ class SchoolListViewModal: NSObject, SchoolListViewModalInput {
     }
     
     private func updateSchools() {
-        schools = isFiltering && !filteredSchools.isEmpty ? filteredSchools : totalSchools
+        schools = !filteredSchools.isEmpty ? filteredSchools : totalSchools
     }
 }

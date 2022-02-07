@@ -18,14 +18,6 @@ class ViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private let searchController = UISearchController(searchResultsController: nil)
     
-    private var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    private var isFiltering: Bool {
-        return searchController.isActive && !isSearchBarEmpty
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -66,13 +58,10 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.isFiltering = isFiltering // passing the latest information
         return viewModel.cellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        viewModel.isFiltering = isFiltering // passing the latest information
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = viewModel.schools[indexPath.row].name.uppercased()
